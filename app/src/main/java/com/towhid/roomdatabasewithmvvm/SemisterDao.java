@@ -21,7 +21,7 @@ public interface SemisterDao {
     @Delete
     void deleteSemister(Semister semister);
 
-    @Query("Select * From Semister Order By semisterName")
+    @Query("Select * From Semister Order By id DESC")
     LiveData<List<Semister>> getAllSemister();
 
     @Query("Delete From Semister")

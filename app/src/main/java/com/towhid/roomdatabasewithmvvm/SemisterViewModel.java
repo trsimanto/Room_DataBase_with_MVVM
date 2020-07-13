@@ -25,5 +25,11 @@ public class SemisterViewModel extends AndroidViewModel {
     public void insertSemister(Semister semister){
         repository.insertSemister(semister);
     }
+    public void deleteSemister(Semister semister){
+        repository.deleteSemister(semister);
+    }
+    public void updateSemister(Semister semister){
+        repository.updateSemister(semister);
+    }
 
 }

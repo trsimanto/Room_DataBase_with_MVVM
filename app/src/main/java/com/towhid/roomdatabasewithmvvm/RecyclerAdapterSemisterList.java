@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -16,8 +17,10 @@ public class RecyclerAdapterSemisterList extends RecyclerView.Adapter<RecyclerAd
 
     Context mcontext;
     List<Semister> mData; //contact clalss type array list object declare kora hoese just , instantiate kora hoy nai
+    MainActivity activity;
 
-    public RecyclerAdapterSemisterList(Context mcontext,List<Semister> mData) {
+    public RecyclerAdapterSemisterList(MainActivity activity, Context mcontext, List<Semister> mData) {
+        this.activity = activity;
         this.mcontext = mcontext;
         this.mData = mData;
 
@@ -37,12 +40,17 @@ public class RecyclerAdapterSemisterList extends RecyclerView.Adapter<RecyclerAd
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
 
-        Semister tempsemister=mData.get(position);
+        Semister tempsemister = mData.get(position);
         holder.semistername.setText(tempsemister.getSemisterName());
-        holder.semistergpa.setText(tempsemister.getSemiseterGPA()+"");
-        holder.semistercredit.setText(tempsemister.getSemisterCredit()+"");
+        holder.semistergpa.setText(tempsemister.getSemiseterGPA() + "");
+        holder.semistercredit.setText(tempsemister.getSemisterCredit() + "");
 
-
+        holder.card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                activity.onItemClick(tempsemister);
+            }
+        });
 
     }
 
@@ -55,14 +63,16 @@ public class RecyclerAdapterSemisterList extends RecyclerView.Adapter<RecyclerAd
         TextView semistername;
         TextView semistergpa;
         TextView semistercredit;
+        CardView card;
 
         public MyViewHolder(View itemView) {
 
             super(itemView);
 
-            semistercredit=itemView.findViewById(R.id.semistercredittv);
-            semistergpa=itemView.findViewById(R.id.semistergpatv);
-            semistername=itemView.findViewById(R.id.semisterNametv);
+            card = itemView.findViewById(R.id.card);
+            semistercredit = itemView.findViewById(R.id.semistercredittv);
+            semistergpa = itemView.findViewById(R.id.semistergpatv);
+            semistername = itemView.findViewById(R.id.semisterNametv);
 
 
         }
